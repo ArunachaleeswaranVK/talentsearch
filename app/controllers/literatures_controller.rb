@@ -29,7 +29,7 @@ class LiteraturesController < ApplicationController
         
         if @literature.save
            flash[:success] = "literature Created !"
-           redirect_to root_path
+           redirect_to literatures_path
         else
             render "new"
         end    
@@ -51,7 +51,7 @@ class LiteraturesController < ApplicationController
     def destroy
         @literature.destroy
         flash[:success] = "literature has been deleted !"
-        redirect_to root_path
+        redirect_to literatures_path
     end
     
     # def upvote
@@ -70,7 +70,7 @@ class LiteraturesController < ApplicationController
     end    
     
     def literature_params
-        params.require(:literature).permit(:title,:body)
+        params.require(:literature).permit(:title,:body,:category2_id)
     end 
     
 end

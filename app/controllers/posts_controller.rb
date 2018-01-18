@@ -21,7 +21,8 @@ class PostsController < ApplicationController
     end    
     
     def new
-       @post = Post.new 
+       @post = Post.new
+       @category_id = params[:value]
     end    
     
     def create
@@ -29,7 +30,7 @@ class PostsController < ApplicationController
         
         if @post.save
            flash[:success] = "Post Created !"
-           redirect_to root_path
+           redirect_to posts_path
         else
             render "new"
         end    
@@ -51,7 +52,7 @@ class PostsController < ApplicationController
     def destroy
         @post.destroy
         flash[:success] = "Post has been deleted !"
-        redirect_to root_path
+        redirect_to posts_path
     end
     
     # def upvote
@@ -70,6 +71,6 @@ class PostsController < ApplicationController
     end    
     
     def post_params
-        params.require(:post).permit(:title,:body)
+        params.require(:post).permit(:title,:body,:category_id)
     end 
 end
