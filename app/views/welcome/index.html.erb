@@ -1,8 +1,32 @@
 <h1>Welcome#index</h1>
 
- 
-
 <%= link_to(:controller => "posts", :action => "new", :value => 5) do %>
     <span>Singing</span>
-   
 <% end %>
+
+<%= link_to(:controller => "posts", :action => "new", :value => 6) do %>
+    <span>Dance</span>
+<% end %>
+
+<%= link_to(:controller => "posts", :action => "new", :value => 9) do %>
+    <span>Photography</span>
+<% end %>
+
+<%= link_to(:controller => "literatures", :action => "new", :value => 7) do %>
+    <span>Writings</span>
+<% end %>
+
+<%= link_to(:controller => "literatures", :action => "new", :value => 8) do %>
+    <span>Poems</span>
+<% end %>
+
+<hr></hr>
+
+<% @posts.each do |i| %>
+    <h3><%= link_to i.title , i %></h3>
+<% end %>  
+
+<% @literatures.each do |i| %>
+    <h3><%= link_to i.title , i %></h3>
+<% end %>    
+

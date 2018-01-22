@@ -30,7 +30,7 @@ class PostsController < ApplicationController
         
         if @post.save
            flash[:success] = "Post Created !"
-           redirect_to posts_path
+           redirect_to root_path
         else
             render "new"
         end    
@@ -52,7 +52,7 @@ class PostsController < ApplicationController
     def destroy
         @post.destroy
         flash[:success] = "Post has been deleted !"
-        redirect_to posts_path
+        redirect_to root_path
     end
     
     # def upvote

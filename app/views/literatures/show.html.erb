@@ -3,3 +3,7 @@
 <h1><%= @literature.title %></h1>
 
 <h3><%= @literature.body %></h3>
+
+<%= link_to "All Posts" , root_path %> |
+<%= link_to "Edit" , edit_literature_path(@literature) %> |
+<%= link_to "Delete", literature_path(@literature), method: :delete, data: {confirm: "Are you sure ?" } %>
