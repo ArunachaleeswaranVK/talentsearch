@@ -1,5 +1,31 @@
 <h1>Welcome#index</h1>
-
+<div>
+<ul>
+        <% if user_signed_in? %>
+            
+            <li><%= link_to edit_user_registration_path do  %>
+                <i class="glyphicon glyphicon-user"></i> Account Settings
+                <% end %>
+            </li>
+            <li><%= link_to destroy_user_session_path , method: :delete , data: {confirm: "Wanna Log out ?"} do  %>
+                <i class="glyphicon glyphicon-log-out"></i> Sign Out
+                <% end %>
+            </li>
+            
+            
+        <% else %>
+            <li><%= link_to new_user_registration_path do  %>
+                <i class="glyphicon glyphicon-user"></i> Sign Up
+                <% end %>
+            </li>
+            <li><%= link_to user_session_path do %>
+                <i class="glyphicon glyphicon-log-in"> LogIn</i>
+                <% end %>
+            </li>
+        
+        <% end %>
+</ul>
+</div>
 <%= link_to(:controller => "posts", :action => "new", :value => 5) do %>
     <span>Singing</span>
 <% end %>
@@ -23,10 +49,10 @@
 <hr></hr>
 
 <% @posts.each do |i| %>
-    <h3><%= link_to i.title , i %></h3>
+    <h3><%= link_to i.title , i %> | <%= i.category.name %></h3> 
 <% end %>  
 
 <% @literatures.each do |i| %>
-    <h3><%= link_to i.title , i %></h3>
+    <h3><%= link_to i.title , i %> | <%= i.category.name %></h3>
 <% end %>    
 

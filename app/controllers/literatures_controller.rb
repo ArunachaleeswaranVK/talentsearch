@@ -1,7 +1,7 @@
 class LiteraturesController < ApplicationController
         
     before_action :set_literature , only: [:show,:edit,:update,:destroy,:upvote]
-    # before_action :authenticate_user! , except: [:index,:show,:upvote,:search]
+    before_action :authenticate_user! , except: [:index,:show,:upvote,:search]
     
     def index
         @literatures = Literature.all
@@ -21,12 +21,12 @@ class LiteraturesController < ApplicationController
     end    
     
     def new
-       @literature = Literature.new 
+       @literature = current_user.literatures.build
        @category_id = params[:value]
     end    
     
     def create
-       @literature = Literature.new(literature_params) 
+       @literature = current_user.literatures.build(literature_params) 
         
         if @literature.save
            flash[:success] = "literature Created !"
