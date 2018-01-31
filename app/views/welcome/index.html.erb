@@ -27,12 +27,44 @@
 <div class="row">
     
 
-<% @posts.each do |i| %>
-    <h3><%= link_to i.title , i %> | <%= i.category.name %></h3> 
+<% @posts.each do |post| %>
+    <h3><%= link_to post.title , post %> | <%= post.category.name %></h3> 
+    
+    <!--like buttons-->
+    
+    <%= link_to like_post_path(post), method: :put, class: "like" do %>
+        <button type="button" class="btn btn-default btn-sm">
+          <span class="glyphicon glyphicon-thumbs-up"></span> Like
+          <span class="badge"><%= post.get_upvotes.size %></span>
+        </button>
+        
+      <% end %>
+      <%= link_to unlike_post_path(post), method: :put, class: "like" do %>
+        <button type="button" class="btn btn-default btn-sm">
+          <span class="glyphicon glyphicon-thumbs-down"></span> Dislike
+          <span class="badge"><%= post.get_downvotes.size %></span>
+        </button>
+      <% end %>
 <% end %>  
 
-<% @literatures.each do |i| %>
-    <h3><%= link_to i.title , i %> | <%= i.category.name %></h3>
+<% @literatures.each do |post| %>
+    <h3><%= link_to post.title , post %> | <%= post.category.name %></h3>
+    
+    <!--like buttons-->
+    
+    <%= link_to like_literature_path(post), method: :put, class: "like" do %>
+        <button type="button" class="btn btn-default btn-sm">
+          <span class="glyphicon glyphicon-thumbs-up"></span> Like
+          <span class="badge"><%= post.get_upvotes.size %></span>
+        </button>
+        
+      <% end %>
+      <%= link_to unlike_literature_path(post), method: :put, class: "like" do %>
+        <button type="button" class="btn btn-default btn-sm">
+          <span class="glyphicon glyphicon-thumbs-down"></span> Dislike
+          <span class="badge"><%= post.get_downvotes.size %></span>
+        </button>
+      <% end %>
 <% end %>    
 
 </div>

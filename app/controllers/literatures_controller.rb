@@ -1,7 +1,7 @@
 class LiteraturesController < ApplicationController
         
-    before_action :set_literature , only: [:show,:edit,:update,:destroy,:upvote]
-    before_action :authenticate_user! , except: [:index,:show,:upvote,:search]
+    before_action :set_literature , only: [:show,:edit,:update,:destroy,:upvote,:downvote]
+    before_action :authenticate_user! , except: [:index,:show,:search]
     
     def index
         @literatures = Literature.all
@@ -55,13 +55,17 @@ class LiteraturesController < ApplicationController
         redirect_to root_path
     end
     
-    # def upvote
-    #     voter = guest_user
-    #     @literature.upvote_by voter
+    def upvote
         
-        
-    #     redirect_to :back
-    # end    
+        @literature.upvote_by current_user
+        redirect_to :back
+    end 
+    
+    def downvote
+       
+        @literature.downvote_by current_user
+        redirect_to :back
+    end    
     
     
     private
